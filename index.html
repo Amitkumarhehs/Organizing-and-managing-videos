@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Learning Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>My Learning Hub</h1>
+      <p class="tagline">Learn something new, one lesson at a time.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <h2>Welcome!</h2>
+      <p>
+        Pick a lesson from the list below and the video will play right here on the page.
+        Take your time, watch each lesson as many times as you need, and keep track of
+        your progress as you work through the course.
+      </p>
+    </section>
+
+    <section class="player-section">
+      <h2>Now Playing</h2>
+      <div class="video-wrapper">
+        <video id="videoPlayer" controls preload="metadata" playsinline>
+          <source id="videoSource" src="videos/lesson1.mp4" type="video/mp4">
+          Your browser does not support the video element.
+        </video>
+      </div>
+      <p class="now-playing-title" id="nowPlaying">Lesson 1</p>
+    </section>
+
+    <section class="lessons">
+      <h2>Lessons</h2>
+      <ul class="lesson-list" id="lessonList">
+        <li>
+          <button class="lesson-btn active" data-src="videos/lesson1.mp4" data-title="Lesson 1">
+            <span class="lesson-number">1</span>
+            <span class="lesson-name">Lesson 1</span>
+          </button>
+        </li>
+        <li>
+          <button class="lesson-btn" data-src="videos/lesson2.mp4" data-title="Lesson 2">
+            <span class="lesson-number">2</span>
+            <span class="lesson-name">Lesson 2</span>
+          </button>
+        </li>
+        <li>
+          <button class="lesson-btn" data-src="videos/lesson3.mp4" data-title="Lesson 3">
+            <span class="lesson-number">3</span>
+            <span class="lesson-name">Lesson 3</span>
+          </button>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>My Learning Hub &mdash; built with plain HTML, CSS and JavaScript.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
