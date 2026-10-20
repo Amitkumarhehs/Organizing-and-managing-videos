@@ -1,71 +1,395 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Learning Hub</title>
+  <title>My Learning Hub — Online Course Platform</title>
+  <meta name="description" content="My Learning Hub — a modern online course platform for learning video lessons at your own pace.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <h1>My Learning Hub</h1>
-      <p class="tagline">Learn something new, one lesson at a time.</p>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="#home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10 12 5 2 10l10 5 10-5Z"></path>
+            <path d="M6 12v5c0 1 2.5 2 6 2s6-1 6-2v-5"></path>
+          </svg>
+        </span>
+        <span class="logo-text">My Learning Hub</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#courses" class="nav-link">Courses</a>
+        <a href="#learning" class="nav-link">My Learning</a>
+        <a href="#dashboard" class="nav-link">Dashboard</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" type="button" title="Toggle dark mode" aria-label="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+          </svg>
+        </button>
+
+        <button class="btn btn-primary btn-sm" id="loginBtn" type="button">Login</button>
+
+        <div class="profile-wrap" id="profileWrap" hidden>
+          <button class="profile-btn" id="profileBtn" type="button" aria-haspopup="true" aria-expanded="false">
+            <span class="avatar" id="avatar">G</span>
+            <span class="profile-name" id="profileName">Guest</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"></path></svg>
+          </button>
+          <div class="profile-menu" id="profileMenu" hidden>
+            <div class="profile-menu-head">
+              <strong id="menuName">Guest</strong>
+              <small id="menuEmail">demo mode</small>
+            </div>
+            <button class="menu-item" id="logoutBtn" type="button">Log out</button>
+          </div>
+        </div>
+
+        <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main class="container">
-    <section class="welcome">
-      <h2>Welcome!</h2>
-      <p>
-        Pick a lesson from the list below and the video will play right here on the page.
-        Take your time, watch each lesson as many times as you need, and keep track of
-        your progress as you work through the course.
-      </p>
-    </section>
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="badge">Learn at your own pace</span>
+          <h1>Organizing and Managing Videos</h1>
+          <p class="hero-text">
+            A hands-on course on organizing, editing and managing your video library so you
+            can spend less time hunting for files and more time creating great content.
+          </p>
+          <div class="hero-cta">
+            <button class="btn btn-primary" id="startLearningBtn" type="button">Start Learning</button>
+            <button class="btn btn-ghost" id="browseCoursesBtn" type="button">Browse Courses</button>
+          </div>
+          <ul class="hero-stats">
+            <li><strong id="statLessons">0</strong><span>Lessons</span></li>
+            <li><strong id="statCourses">0</strong><span>Courses</span></li>
+            <li><strong id="statDuration">0h</strong><span>Total time</span></li>
+          </ul>
+        </div>
 
-    <section class="player-section">
-      <h2>Now Playing</h2>
-      <div class="video-wrapper">
-        <video id="videoPlayer" controls preload="metadata" playsinline>
-          <source id="videoSource" src="videos/lesson1.mp4" type="video/mp4">
-          Your browser does not support the video element.
-        </video>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-card hero-card-main">
+            <div class="hero-thumb">
+              <span class="play-badge">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+              </span>
+            </div>
+            <div class="hero-card-body">
+              <span class="chip">Lesson 1</span>
+              <h3>Setting up your workspace</h3>
+              <div class="bar"><span style="width:18%"></span></div>
+            </div>
+          </div>
+          <div class="hero-card hero-card-float">
+            <span class="float-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+            </span>
+            <div><strong>Lesson complete</strong><small>Progress saved locally</small></div>
+          </div>
+        </div>
       </div>
-      <p class="now-playing-title" id="nowPlaying">Lesson 1</p>
     </section>
 
-    <section class="lessons">
-      <h2>Lessons</h2>
-      <ul class="lesson-list" id="lessonList">
-        <li>
-          <button class="lesson-btn active" data-src="videos/lesson1.mp4" data-title="Lesson 1">
-            <span class="lesson-number">1</span>
-            <span class="lesson-name">Lesson 1</span>
-          </button>
-        </li>
-        <li>
-          <button class="lesson-btn" data-src="videos/lesson2.mp4" data-title="Lesson 2">
-            <span class="lesson-number">2</span>
-            <span class="lesson-name">Lesson 2</span>
-          </button>
-        </li>
-        <li>
-          <button class="lesson-btn" data-src="videos/lesson3.mp4" data-title="Lesson 3">
-            <span class="lesson-number">3</span>
-            <span class="lesson-name">Lesson 3</span>
-          </button>
-        </li>
-      </ul>
+    <!-- ============ DASHBOARD ============ -->
+    <section class="section" id="dashboard">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Your Dashboard</h2>
+            <p class="section-sub" id="dashWelcome">Welcome! Pick up where you left off.</p>
+          </div>
+          <span class="mode-pill" id="modePill">Demo mode — progress saved on this device</span>
+        </div>
+
+        <div class="stat-cards">
+          <div class="stat-card">
+            <span class="stat-icon blue">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"></path></svg>
+            </span>
+            <div><strong id="cardTotalLessons">0</strong><span>Total lessons</span></div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon green">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"></path><path d="m9 11 3 3L22 4"></path></svg>
+            </span>
+            <div><strong id="cardCompleted">0</strong><span>Completed</span></div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon purple">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+            </span>
+            <div><strong id="cardTimeLeft">0m</strong><span>Time remaining</span></div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon amber">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            </span>
+            <div><strong id="cardProgress">0%</strong><span>Overall progress</span></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Overall Progress</h3>
+            <span id="progressLabel">0 of 0 lessons complete</span>
+          </div>
+          <div class="progress"><span id="progressBar" style="width:0%"></span></div>
+
+          <div class="continue-row">
+            <div class="continue-info">
+              <span class="chip">Continue learning</span>
+              <h3 id="continueTitle">Start with Lesson 1</h3>
+              <p id="continueText">Pick a lesson and pick up right where you stopped.</p>
+            </div>
+            <button class="btn btn-primary" id="continueBtn" type="button">Continue Learning</button>
+          </div>
+
+          <div class="recent" id="recentBlock" hidden>
+            <h4>Recently watched</h4>
+            <div class="recent-item" id="recentItem"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COURSES ============ -->
+    <section class="section section-alt" id="courses">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Available Courses</h2>
+            <p class="section-sub">Pick a course and start watching right away.</p>
+          </div>
+        </div>
+        <div class="course-grid" id="courseGrid"></div>
+      </div>
+    </section>
+
+    <!-- ============ LEARNING / PLAYER ============ -->
+    <section class="section" id="learning">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Course Player</h2>
+            <p class="section-sub" id="courseSub">Watch the lessons of your selected course.</p>
+          </div>
+        </div>
+
+        <div class="learning-layout">
+          <!-- Left: player -->
+          <div class="player-column">
+            <div class="video-wrapper">
+              <video id="videoPlayer" controls preload="metadata" playsinline>
+                <source id="videoSource" src="videos/lesson1.mp4" type="video/mp4">
+                Your browser does not support the video element.
+              </video>
+              <p class="video-missing" id="videoMissing" hidden>
+                <strong>Video file not found.</strong>
+                Add the MP4 to <code>videos/</code> using the name shown above, then reload this page.
+              </p>
+            </div>
+
+            <div class="player-meta">
+              <div class="player-title-row">
+                <h3 id="nowPlaying">Lesson 1</h3>
+                <span class="chip chip-accent" id="activeLessonChip">Lesson 1 of 3</span>
+              </div>
+              <p class="player-desc" id="lessonDescription">Video lesson — press play to begin.</p>
+
+              <div class="player-progress">
+                <div class="progress progress-sm"><span id="lessonProgressBar" style="width:0%"></span></div>
+                <span id="lessonProgressText">0% of this lesson watched</span>
+              </div>
+
+              <div class="player-actions">
+                <button class="btn btn-outline" id="prevLessonBtn" type="button">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+                  Previous Lesson
+                </button>
+                <button class="btn btn-outline" id="markCompleteBtn" type="button">Mark as complete</button>
+                <button class="btn btn-primary" id="nextLessonBtn" type="button">
+                  Next Lesson
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: lesson cards -->
+          <aside class="lesson-column">
+            <div class="lesson-panel-head">
+              <h3>Lessons</h3>
+              <span id="lessonCountLabel">3 lessons</span>
+            </div>
+            <ul class="lesson-list" id="lessonList">
+              <li>
+                <button class="lesson-btn active" data-src="videos/lesson1.mp4" data-title="Lesson 1" data-duration="08:24" data-desc="Set up your folder structure and naming conventions.">
+                  <span class="lesson-number">1</span>
+                  <span class="lesson-name">Lesson 1</span>
+                </button>
+              </li>
+              <li>
+                <button class="lesson-btn" data-src="videos/lesson2.mp4" data-title="Lesson 2" data-duration="12:10" data-desc="Organize footage into projects, folders and libraries.">
+                  <span class="lesson-number">2</span>
+                  <span class="lesson-name">Lesson 2</span>
+                </button>
+              </li>
+              <li>
+                <button class="lesson-btn" data-src="videos/lesson3.mp4" data-title="Lesson 3" data-duration="09:45" data-desc="Export, back up and manage your final video files.">
+                  <span class="lesson-number">3</span>
+                  <span class="lesson-name">Lesson 3</span>
+                </button>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
     </section>
   </main>
 
+  <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
-    <div class="container">
-      <p>My Learning Hub &mdash; built with plain HTML, CSS and JavaScript.</p>
+    <div class="container footer-grid">
+      <div class="footer-col footer-about">
+        <div class="logo footer-logo">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10 12 5 2 10l10 5 10-5Z"></path>
+              <path d="M6 12v5c0 1 2.5 2 6 2s6-1 6-2v-5"></path>
+            </svg>
+          </span>
+          <span class="logo-text">My Learning Hub</span>
+        </div>
+        <p>A friendly place to learn how to organize and manage your videos — one lesson at a time.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#home">About us</a></li>
+          <li><a href="#courses">Our courses</a></li>
+          <li><a href="#learning">Video library</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@mylearninghub.example">hello@mylearninghub.example</a></li>
+          <li><a href="#dashboard">Student dashboard</a></li>
+          <li><a href="#home">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Useful links</h4>
+        <ul>
+          <li><a href="#courses">Browse courses</a></li>
+          <li><a href="#learning">My learning</a></li>
+          <li><a href="#" id="footerAuthLink">Login / Sign up</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year"></span> My Learning Hub. Built with plain HTML, CSS and JavaScript.</p>
     </div>
   </footer>
+
+  <!-- ============ AUTH MODAL ============ -->
+  <div class="modal-backdrop" id="authModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button class="modal-close" id="authClose" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+
+      <div class="auth-head">
+        <span class="logo-mark auth-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10 12 5 2 10l10 5 10-5Z"></path>
+            <path d="M6 12v5c0 1 2.5 2 6 2s6-1 6-2v-5"></path>
+          </svg>
+        </span>
+        <h2 id="authTitle">Welcome back</h2>
+        <p id="authSubtitle">Log in to continue your learning journey.</p>
+      </div>
+
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="tabLogin" type="button" role="tab" aria-selected="true">Login</button>
+        <button class="auth-tab" id="tabSignup" type="button" role="tab" aria-selected="false">Sign Up</button>
+      </div>
+
+      <div class="demo-note" id="demoNote">
+        <strong>Demo mode</strong>
+        <span>No real account is created. Any valid-looking email and a password of 6+ characters
+        signs you in locally; progress is stored only in this browser. Never use a real password here.</span>
+      </div>
+
+      <form id="authForm" novalidate>
+        <div class="field" id="nameField" hidden>
+          <label for="authName">Full name</label>
+          <input type="text" id="authName" name="name" placeholder="Alex Morgan" autocomplete="name">
+          <small class="error" id="nameError"></small>
+        </div>
+
+        <div class="field">
+          <label for="authEmail">Email</label>
+          <input type="email" id="authEmail" name="email" placeholder="you@example.com" autocomplete="email">
+          <small class="error" id="emailError"></small>
+        </div>
+
+        <div class="field">
+          <label for="authPassword">Password</label>
+          <div class="password-wrap">
+            <input type="password" id="authPassword" name="password" placeholder="At least 6 characters" autocomplete="current-password">
+            <button class="eye-btn" id="togglePassword" type="button" aria-label="Show password">
+              <svg class="eye-open" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              <svg class="eye-closed" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 6.2A9.9 9.9 0 0 1 12 6c6.4 0 10 6 10 6a17.6 17.6 0 0 1-3.2 4.1M6.6 6.7A17.6 17.6 0 0 0 2 12s3.6 6 10 6a9.7 9.7 0 0 0 3.4-.6"></path><path d="m2 2 20 20"></path></svg>
+            </button>
+          </div>
+          <small class="error" id="passwordError"></small>
+        </div>
+
+        <div class="field" id="confirmField" hidden>
+          <label for="authConfirm">Confirm password</label>
+          <input type="password" id="authConfirm" name="confirm" placeholder="Repeat your password" autocomplete="new-password">
+          <small class="error" id="confirmError"></small>
+        </div>
+
+        <div class="form-row">
+          <label class="checkbox">
+            <input type="checkbox" id="rememberMe" checked>
+            <span>Remember me on this device</span>
+          </label>
+        </div>
+
+        <button class="btn btn-primary btn-block" id="authSubmit" type="submit">Log in</button>
+        <p class="auth-msg" id="authMsg"></p>
+      </form>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
+
+
