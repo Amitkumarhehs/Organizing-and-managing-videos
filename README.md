@@ -1,4 +1,4 @@
-# 🎓 Organizing and Managing Videos
+# 🎓 Learn With Amit & Gautam
 
 A modern, responsive online learning platform designed to organize video lessons and provide students with a simple, user-friendly learning experience.
 
